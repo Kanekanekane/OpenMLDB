@@ -36,6 +36,7 @@ source test/steps/read_properties.sh
 if [[ "${BUILD_MODE}" == "SRC" ]]; then
     cd java/openmldb-batch || exit
     mvn clean install -Dmaven.test.skip=true -Dgpg.skip
+    echo "BUILD_VERSION:${BUILD_VERSION}"
     cd "${ROOT_DIR}" || exit
 fi
 # install command tool
@@ -43,6 +44,7 @@ cd test/test-tool/command-tool || exit
 mvn clean install -Dmaven.test.skip=true
 cd "${ROOT_DIR}" || exit
 
+echo "BUILD_VERSION:${BUILD_VERSION}"
 # modify config
 sh test/steps/modify_batch_config.sh "${BATCH_VERSION}" "${BUILD_MODE}"
 
